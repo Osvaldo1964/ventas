@@ -16,6 +16,7 @@
         <span class="text-muted ms-3 d-none d-md-inline-block" style="font-size:0.9em;">Administración de terminales de venta</span>
     </div>
     <div class="d-flex align-items-center">
+        <i class="far fa-bell text-muted me-4 fs-5" style="cursor: pointer;"></i>
         <div class="text-end me-3">
             <div class="fw-bold text-primary" id="userName"></div>
             <div class="text-muted" style="font-size:0.8em" id="userRole"></div>
@@ -28,7 +29,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-0">
             <li class="breadcrumb-item"><a href="/ventas/public/dashboard"><i class="fas fa-home me-1"></i>Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="/ventas/public/cajas">Cajas</a></li>
+            <li class="breadcrumb-item"><a href="/ventas/public/cajas">Caja</a></li>
             <li class="breadcrumb-item active">Gestión de Cajas</li>
         </ol>
     </nav>
@@ -129,7 +130,7 @@
     }
 
     async function cargarSedes() {
-        const res = await api('/ventas/public/api/usuarios/sedes'); // Aprovechamos endpoint existente
+        const res = await api('/ventas/public/api/sedes'); 
         const sel = document.getElementById('cajaSede');
         if (!res.error && res.data.length) {
             sel.innerHTML = '<option value="">Selecciona una sede...</option>' + 

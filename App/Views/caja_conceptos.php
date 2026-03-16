@@ -16,6 +16,7 @@
         <span class="text-muted ms-3 d-none d-md-inline-block" style="font-size:0.9em;">Tipos de ingresos y egresos permitidos</span>
     </div>
     <div class="d-flex align-items-center">
+        <i class="far fa-bell text-muted me-4 fs-5" style="cursor: pointer;"></i>
         <div class="text-end me-3">
             <div class="fw-bold text-primary" id="userName"></div>
             <div class="text-muted" style="font-size:0.8em" id="userRole"></div>

@@ -16,6 +16,7 @@
         <span class="text-muted ms-3 d-none d-md-inline-block" style="font-size:0.9em;">Inicia o finaliza tu turno de trabajo</span>
     </div>
     <div class="d-flex align-items-center">
+        <i class="far fa-bell text-muted me-4 fs-5" style="cursor: pointer;"></i>
         <div class="text-end me-3">
             <div class="fw-bold text-primary" id="userName"></div>
             <div class="text-muted" style="font-size:0.8em" id="userRole"></div>
@@ -28,7 +29,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-0">
             <li class="breadcrumb-item"><a href="/ventas/public/dashboard"><i class="fas fa-home me-1"></i>Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="/ventas/public/cajas">Cajas</a></li>
+            <li class="breadcrumb-item"><a href="/ventas/public/cajas">Caja</a></li>
             <li class="breadcrumb-item active">Apertura / Cierre</li>
         </ol>
     </nav>

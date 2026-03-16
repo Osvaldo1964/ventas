@@ -48,21 +48,22 @@ Plataforma integral que combina un Sistema de Punto de Venta (POS) administrativ
     *   [x] Usuarios del sistema (CRUD completo: crear, editar, eliminar).
 
 *   **2. Inventarios:**
-    *   [x] Categorías de productos (CRUD con imágenes).
-    *   [x] Items (Productos, precios, sku, stock).
+    *   [x] Categorías de productos (CRUD con imágenes y previsualización).
+    *   [x] Items (Productos: precios, SKU, imagen principal, modal XL mejorado).
     *   [ ] Bodegas.
     *   [ ] Entradas y Salidas de inventario.
     *   [ ] Traslados entre bodegas.
-    *   *Nota: El inventario debe sincronizarse en tiempo real con el E-commerce.*
+    *   *Nota: El inventario cuenta con optimización de carga y esquema de BD validado.*
 
 *   **3. Ventas (POS):**
     *   [ ] Interfaz de Cajero POS.
     *   [ ] Gestión de Promociones (Porcentaje, Montos, etc.).
 
 *   **4. Caja:**
-    *   [x] Gestión de cajas físicas.
-    *   [x] Apertura y Cierre de Sesiones (validaciones, base inicial, cierre ciego).
-    *   [ ] Conceptos de Caja (Tipos de ingresos/gastos).
+    *   [x] Menú unificado de Caja (Tarjetas de acceso rápido).
+    *   [x] Gestión de cajas físicas (CRUD completo con asignación de sedes).
+    *   [x] Apertura y Cierre de Sesiones (Lógica diferenciada Admin/Cajero).
+    *   [ ] Conceptos de Caja (Maquetado inicial listo).
     *   [x] Registro de Entradas y Salidas extras (Ingresos/Gastos).
     *   [x] Auditoría de movimientos de efectivo.
 
@@ -78,6 +79,8 @@ Plataforma integral que combina un Sistema de Punto de Venta (POS) administrativ
 *   [x] Configurar la conexión a BD y la clase abstracta de Modelos.
 *   [x] Implementar el sistema de Seguridad (Middleware y JWT).
 *   [x] Desarrollo del Backend (API REST Core).
-*   [x] Desarrollo del Frontend Web (Dashboard, Config, Inventarios, Cajas).
+*   [x] Desarrollo del Frontend Web (Dashboard, Config, Inventarios, Cajas, Sedes).
+*   [x] Estandarización de Interfaz (Breadcrumbs, Barra de navegación, Notificaciones).
+*   [ ] Implementar el Módulo de Ventas POS (Punto de Venta).
 *   [ ] Implementar el Módulo de Ventas POS (Punto de Venta).
 *   [ ] Desarrollo del E-commerce frontend.

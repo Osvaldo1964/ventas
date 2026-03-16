@@ -81,10 +81,12 @@ $app->router->post('/api/tiendas/{id}/logo', [\App\Controllers\TenantController:
 $app->router->get('/api/productos', [\App\Controllers\ProductoController::class, 'index']);
 $app->router->get('/api/productos/{id}', [\App\Controllers\ProductoController::class, 'show']);
 $app->router->post('/api/productos', [\App\Controllers\ProductoController::class, 'store']);
+$app->router->post('/api/productos/{id}', [\App\Controllers\ProductoController::class, 'update']);
 $app->router->put('/api/productos/{id}', [\App\Controllers\ProductoController::class, 'update']);
 $app->router->delete('/api/productos/{id}', [\App\Controllers\ProductoController::class, 'destroy']);
 $app->router->get('/api/categorias', [\App\Controllers\CategoriaController::class, 'index']);
 $app->router->post('/api/categorias', [\App\Controllers\CategoriaController::class, 'store']);
+$app->router->post('/api/categorias/{id}', [\App\Controllers\CategoriaController::class, 'update']);
 $app->router->put('/api/categorias/{id}', [\App\Controllers\CategoriaController::class, 'update']);
 $app->router->delete('/api/categorias/{id}', [\App\Controllers\CategoriaController::class, 'destroy']);
 

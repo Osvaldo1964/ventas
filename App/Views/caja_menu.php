@@ -106,65 +106,35 @@
             border-color: #cbd5e1;
         }
 
-        .user-info-lite {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            text-align: right;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .user-info-lite .bell-icon {
-            color: #94a3b8;
-            font-size: 1.2rem;
-            margin-right: 10px;
-        }
-
-        .user-meta .name {
-            font-weight: 700;
-            color: var(--primary-color);
-            margin: 0;
-            line-height: 1;
-        }
-        
-        .user-meta .role {
-            font-size: 0.75rem;
-            color: #94a3b8;
-            margin: 0;
-        }
-
-        .user-meta .logout {
-            font-size: 0.75rem;
-            color: #ef4444;
-            font-weight: 700;
-            text-decoration: none;
-        }
     </style>
 </head>
 <body>
 
-<div class="user-info-lite">
-    <i class="far fa-bell bell-icon"></i>
-    <div class="user-meta">
-        <p class="name" id="userName"></p>
-        <p class="role" id="userRole"></p>
-        <a href="#" class="logout" onclick="logout()">Cerrar Sesión</a>
+<div class="top-navbar">
+    <div>
+        <h4 class="fw-bold mb-0 text-primary"><i class="fas fa-cash-register me-2"></i> Caja</h4>
+        <span class="text-muted ms-3 d-none d-md-inline-block" style="font-size:0.9em;">Apertura, cierre y movimientos de efectivo.</span>
+    </div>
+    <div class="d-flex align-items-center">
+        <i class="far fa-bell text-muted me-4 fs-5" style="cursor: pointer;"></i>
+        <div class="text-end me-3">
+            <div class="fw-bold text-primary" id="userName"></div>
+            <div class="text-muted" style="font-size:0.8em" id="userRole"></div>
+        </div>
+        <a href="#" class="text-danger bg-light py-2 px-3 rounded" style="font-size:0.8em;font-weight:600" onclick="logout()"><i class="fas fa-sign-out-alt"></i></a>
     </div>
 </div>
 
-<div class="container pb-5">
-    <div class="breadcrumb-nav">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="/ventas/public/dashboard"><i class="fas fa-home me-1"></i>Dashboard</a></li>
-                <li class="breadcrumb-item active">Caja</li>
-            </ol>
-        </nav>
-    </div>
+<div class="breadcrumb-nav">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/ventas/public/dashboard"><i class="fas fa-home me-1"></i>Dashboard</a></li>
+            <li class="breadcrumb-item active">Caja</li>
+        </ol>
+    </nav>
+</div>
 
-    <div class="menu-header">
+<div class="container pb-5">
 
     <div class="row g-4 justify-content-center">
         <!-- Apertura / Cierre -->

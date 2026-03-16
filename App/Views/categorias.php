@@ -46,13 +46,14 @@
                         <thead class="table-light text-muted" style="font-size: 0.85rem;">
                             <tr>
                                 <th class="ps-4">ID</th>
+                                <th style="width: 80px">Imagen</th>
                                 <th>Nombre</th>
                                 <th>Descripción</th>
                                 <th class="pe-4 text-end">Acciones</th>
                             </tr>
                         </thead>
                         <tbody id="catBody">
-                            <tr><td colspan="4" class="text-center text-muted py-5"><i class="fas fa-spinner fa-spin me-2"></i> Cargando...</td></tr>
+                            <tr><td colspan="5" class="text-center text-muted py-5"><i class="fas fa-spinner fa-spin me-2"></i> Cargando...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -78,6 +79,13 @@
                         <label class="form-label text-muted small fw-semibold">Descripción</label>
                         <textarea class="form-control" id="catDesc" rows="2"></textarea>
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label text-muted small fw-semibold">Imagen</label>
+                        <input type="file" class="form-control" id="catImagen" accept="image/*">
+                        <div id="imgPreview" class="mt-2 text-center" style="display:none">
+                            <img src="" class="img-thumbnail" style="max-height: 100px">
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer border-0 pt-0">
                     <button class="btn btn-light px-4" data-bs-dismiss="modal">Cancelar</button>
@@ -102,11 +110,29 @@
             await cargar();
             document.getElementById('btnNuevo').addEventListener('click', () => abrir());
             document.getElementById('btnGuardar').addEventListener('click', guardar);
+
+            document.getElementById('catImagen').addEventListener('change', function() {
+                const preview = document.getElementById('imgPreview');
+                const img = preview.querySelector('img');
+                if (this.files && this.files[0]) {
+                    img.src = URL.createObjectURL(this.files[0]);
+                    preview.style.display = 'block';
+                } else {
+                    preview.style.display = 'none';
+                }
+            });
         });
 
         async function api(url, method = 'GET', body = null) {
             const opts = { method, headers: { 'Authorization': 'Bearer ' + token } };
-            if(body) { opts.headers['Content-Type'] = 'application/json'; opts.body = JSON.stringify(body); }
+            if(body) {
+                if(body instanceof FormData) {
+                    opts.body = body;
+                } else {
+                    opts.headers['Content-Type'] = 'application/json';
+                    opts.body = JSON.stringify(body);
+                }
+            }
             const r = await fetch(url, opts);
             if(r.status === 401) logout();
             return r.json();
@@ -116,12 +142,14 @@
             const res = await api('/ventas/public/api/categorias');
             cats = res.data || [];
             const tbody = document.getElementById('catBody');
-            if(!cats.length) { tbody.innerHTML = `<tr><td colspan="4" class="text-center text-muted py-5">Sin categorías aún</td></tr>`; return; }
+            if(!cats.length) { tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-5">Sin categorías aún</td></tr>`; return; }
             tbody.innerHTML = '';
             cats.forEach(c => {
+                const img = c.imagen_url ? `<img src="${c.imagen_url}" class="rounded" style="width:40px;height:40px;object-fit:cover">` : '<div class="bg-light rounded d-flex align-items-center justify-content-center text-muted" style="width:40px;height:40px"><i class="fas fa-image"></i></div>';
                 tbody.innerHTML += `
                     <tr>
                         <td class="ps-4 text-muted">#${c.id}</td>
+                        <td>${img}</td>
                         <td class="fw-bold" style="color:#2c3e50">${c.nombre}</td>
                         <td class="text-muted">${c.descripcion || '-'}</td>
                         <td class="pe-4 text-end">
@@ -136,12 +164,19 @@
             document.getElementById('catId').value = '';
             document.getElementById('catNombre').value = '';
             document.getElementById('catDesc').value = '';
+            document.getElementById('catImagen').value = '';
+            document.getElementById('imgPreview').style.display = 'none';
             document.getElementById('modalTitle').textContent = 'Nueva Categoría';
             if(c) {
                 document.getElementById('modalTitle').textContent = 'Editar Categoría';
                 document.getElementById('catId').value = c.id;
                 document.getElementById('catNombre').value = c.nombre;
                 document.getElementById('catDesc').value = c.descripcion || '';
+                if (c.imagen_url) {
+                    const preview = document.getElementById('imgPreview');
+                    preview.querySelector('img').src = c.imagen_url;
+                    preview.style.display = 'block';
+                }
             }
             modal.show();
         }
@@ -153,11 +188,28 @@
 
         async function guardar() {
             const id = document.getElementById('catId').value;
-            const body = { nombre: document.getElementById('catNombre').value, descripcion: document.getElementById('catDesc').value };
-            if(!body.nombre) { Swal.fire('Error', 'El nombre es requerido.', 'warning'); return; }
+            const nombre = document.getElementById('catNombre').value;
+            const descripcion = document.getElementById('catDesc').value;
+            const imagen = document.getElementById('catImagen').files[0];
+
+            if(!nombre) { Swal.fire('Error', 'El nombre es requerido.', 'warning'); return; }
+
+            const fd = new FormData();
+            fd.append('nombre', nombre);
+            fd.append('descripcion', descripcion);
+            if(imagen) fd.append('imagen', imagen);
+
             const url = id ? `/ventas/public/api/categorias/${id}` : '/ventas/public/api/categorias';
-            const method = id ? 'PUT' : 'POST';
-            const res = await api(url, method, body);
+            const method = 'POST'; // Usamos POST para multipart siempre
+            
+            const btn = document.getElementById('btnGuardar');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Guardando...';
+
+            const res = await api(url, method, fd);
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-save me-1"></i> Guardar';
+
             if(!res.error) {
                 Swal.fire({ icon: 'success', title: res.message, timer: 1500, showConfirmButton: false });
                 modal.hide(); await cargar();
