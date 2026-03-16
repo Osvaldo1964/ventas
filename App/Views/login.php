@@ -44,6 +44,6 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/ventas/public/js/app.js"></script>
+    <script src="/ventas/public/js/app.js?v=1.0.2"></script>
 </body>
 </html>

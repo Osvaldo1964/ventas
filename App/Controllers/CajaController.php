@@ -57,6 +57,36 @@ class CajaController extends Controller {
         $this->jsonResponse(['error' => false, 'message' => 'Caja eliminada.']);
     }
 
+    // PUT /api/cajas/{id}
+    public function updateCaja($id) {
+        $payload = AuthMiddleware::authenticate();
+        $t = $payload['tenant_id'];
+        $data = $this->getPostData();
+        
+        if (empty($data['nombre'])) {
+            $this->jsonResponse(['error' => true, 'message' => 'El nombre de la caja es requerido.'], 422);
+        }
+
+        $db = (new Database())->getConnection();
+        
+        // Verificar pertenencia al tenant
+        $check = $db->prepare("SELECT id FROM cajas WHERE id = ? AND tenant_id = ?");
+        $check->execute([$id, $t]);
+        if (!$check->fetch()) {
+            $this->jsonResponse(['error' => true, 'message' => 'Caja no encontrada.'], 404);
+        }
+
+        $stmt = $db->prepare("UPDATE cajas SET nombre = ?, sede_id = ? WHERE id = ? AND tenant_id = ?");
+        $stmt->execute([
+            $data['nombre'],
+            $data['sede_id'] ?? null,
+            $id,
+            $t
+        ]);
+
+        $this->jsonResponse(['error' => false, 'message' => 'Caja actualizada.']);
+    }
+
     // ──────────────────────────────────────────────
     // SESIONES DE CAJA
     // ──────────────────────────────────────────────
@@ -83,7 +113,7 @@ class CajaController extends Controller {
     public function sesionActiva() {
         $payload = AuthMiddleware::authenticate();
         $t  = $payload['tenant_id'];
-        $uid = $payload['user_id'];
+        $uid = $payload['usuario_id'];
         $db = (new Database())->getConnection();
         $stmt = $db->prepare(
             "SELECT sc.*, c.nombre AS caja_nombre
@@ -101,7 +131,7 @@ class CajaController extends Controller {
     public function abrirSesion() {
         $payload = AuthMiddleware::authenticate();
         $t   = $payload['tenant_id'];
-        $uid = $payload['user_id'];
+        $uid = $payload['usuario_id'];
         $db  = (new Database())->getConnection();
 
         // Verificar que no tenga sesión abierta
@@ -144,7 +174,7 @@ class CajaController extends Controller {
     public function cerrarSesion($id) {
         $payload = AuthMiddleware::authenticate();
         $t   = $payload['tenant_id'];
-        $uid = $payload['user_id'];
+        $uid = $payload['usuario_id'];
         $db  = (new Database())->getConnection();
 
         // Obtener sesión

@@ -37,27 +37,33 @@ document.addEventListener('DOMContentLoaded', () => {
                         Swal.fire({
                             icon: 'info',
                             title: '¡Hola ' + data.usuario.nombre + '!',
-                            text: 'Recuerda que debes aperturar la caja del día antes de cobrar.',
-                            confirmButtonColor: '#2b3990'
+                            text: 'Debes aperturar la caja antes de realizar cualquier operación.',
+                            confirmButtonColor: '#2b3990',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false
                         }).then(() => {
-                            window.location.href = '/ventas/public/dashboard';
+                            window.location.href = '/ventas/public/cajas/operacion';
                         });
                     } else if (data.caja_status === 'require_close_caja') {
                         Swal.fire({
                             icon: 'warning',
                             title: 'Cierre Pendiente',
-                            text: 'Tienes una sesión de caja anterior que no ha sido cerrada.',
-                            confirmButtonColor: '#2b3990'
+                            text: 'Tienes una sesión de caja anterior que no ha sido cerrada. Debes cerrarla para continuar.',
+                            confirmButtonColor: '#2b3990',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false
                         }).then(() => {
-                            window.location.href = '/ventas/public/dashboard';
+                            window.location.href = '/ventas/public/cajas/operacion';
                         });
                     } else {
+                        // Acceso normal (Admin o Cajero con caja abierta hoy)
                         Swal.fire({
                             icon: 'success',
                             title: '¡Bienvenido!',
-                            text: 'Redirigiendo al panel...',
+                            text: 'Redirigiendo...',
                             timer: 1500,
-                            showConfirmButton: false
+                            showConfirmButton: false,
+                            allowOutsideClick: false
                         }).then(() => {
                             window.location.href = '/ventas/public/dashboard';
                         });

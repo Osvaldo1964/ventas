@@ -40,7 +40,7 @@
 
             <!-- Modulo Ventas -->
             <div class="col-md-4 col-sm-6">
-                <div class="module-card">
+                <div class="module-card" onclick="window.location.href='/ventas/public/ventas'">
                     <div class="module-icon-wrapper bg-light-blue">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
@@ -51,7 +51,7 @@
 
             <!-- Modulo Caja -->
             <div class="col-md-4 col-sm-6">
-                <div class="module-card">
+                <div class="module-card" onclick="window.location.href='/ventas/public/cajas'">
                     <div class="module-icon-wrapper bg-light-green">
                         <i class="fas fa-money-bill-wave"></i>
                     </div>
@@ -62,7 +62,7 @@
 
             <!-- Modulo Reportes -->
             <div class="col-md-4 col-sm-6">
-                <div class="module-card">
+                <div class="module-card" onclick="window.location.href='/ventas/public/reportes'">
                     <div class="module-icon-wrapper bg-light-blue">
                         <i class="fas fa-chart-bar"></i>
                     </div>
@@ -73,7 +73,7 @@
 
             <!-- Modulo E-commerce -->
             <div class="col-md-4 col-sm-6">
-                <div class="module-card">
+                <div class="module-card" onclick="window.location.href='/ventas/public/ecommerce'">
                     <div class="module-icon-wrapper bg-light-green">
                         <i class="fas fa-globe"></i>
                     </div>
@@ -105,13 +105,37 @@
             } else {
                 try {
                     const user = JSON.parse(localStorage.getItem('pos_usuario') || "{}");
-                    document.getElementById('userName').textContent = user.nombre || 'Administrador';
-                    document.getElementById('userRole').textContent = user.rol || 'Admin';
+                    document.getElementById('userName').textContent = user.nombre || 'Usuario';
+                    document.getElementById('userRole').textContent = user.rol || 'Sin Rol';
+
+                    // Si NO es Administrador, verificar que tenga una caja abierta
+                    const userRole = (user.rol || '').toLowerCase();
+                    if(userRole !== 'admin' && userRole !== 'administrador') {
+                        verificarCajaActiva();
+                    }
                 } catch(e) {
                     console.error("Error parseando user", e);
                 }
             }
         });
+
+        async function verificarCajaActiva() {
+            const token = localStorage.getItem('pos_token');
+            try {
+                const res = await fetch('/ventas/public/api/sesiones-caja/activa', {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                const data = await res.json();
+                
+                // Si data.data es null o undefined, no hay sesión activa
+                if(!data.data || data.data === null) {
+                    console.log("No hay sesión de caja activa. Redirigiendo a apertura...");
+                    window.location.href = '/ventas/public/cajas/operacion';
+                }
+            } catch(e) {
+                console.error("Error verificando caja", e);
+            }
+        }
 
         function logout() {
             localStorage.removeItem('pos_token');

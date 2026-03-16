@@ -44,8 +44,8 @@ Plataforma integral que combina un Sistema de Punto de Venta (POS) administrativ
     *   [x] Datos de la tienda (Empresa, logos, tickets, slogan).
     *   [x] Sedes/Sucursales (Auto-creadas al crear tienda).
     *   [ ] Terceros (Clientes y Proveedores).
-    *   [x] Roles y Permisos (RBAC básico implementado).
-    *   [x] Usuarios del sistema (CRUD con aislamiento de tienda).
+    *   [x] Roles y Permisos (RBAC con matriz de permisos JSON).
+    *   [x] Usuarios del sistema (CRUD completo: crear, editar, eliminar).
 
 *   **2. Inventarios:**
     *   [x] Categorías de productos (CRUD con imágenes).

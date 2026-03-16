@@ -48,14 +48,30 @@ $app->router->get('/dashboard', [\App\Controllers\WebController::class, 'dashboa
 $app->router->get('/configuracion', [\App\Controllers\WebController::class, 'configuracion']);
 $app->router->get('/configuracion/usuarios', [\App\Controllers\WebController::class, 'usuarios']);
 $app->router->get('/configuracion/tiendas', [\App\Controllers\WebController::class, 'tiendas']);
+$app->router->get('/configuracion/roles', [\App\Controllers\WebController::class, 'roles']);
 $app->router->get('/inventario', [\App\Controllers\WebController::class, 'inventario']);
 $app->router->get('/inventario/productos', [\App\Controllers\WebController::class, 'productos']);
 $app->router->get('/inventario/categorias', [\App\Controllers\WebController::class, 'categorias']);
+$app->router->get('/configuracion/sedes', [\App\Controllers\WebController::class, 'sedes']);
 $app->router->get('/cajas', [\App\Controllers\WebController::class, 'cajas']);
+$app->router->get('/cajas/operacion', [\App\Controllers\WebController::class, 'cajaOperacion']);
+$app->router->get('/cajas/gestion', [\App\Controllers\WebController::class, 'cajaGestion']);
+$app->router->get('/cajas/conceptos', [\App\Controllers\WebController::class, 'cajaConceptos']);
 
 // Rutas API
 $app->router->post('/api/login', [\App\Controllers\AuthController::class, 'login']);
 $app->router->get('/api/usuarios', [\App\Controllers\UserController::class, 'getList']);
+$app->router->post('/api/usuarios', [\App\Controllers\UserController::class, 'store']);
+$app->router->put('/api/usuarios/{id}', [\App\Controllers\UserController::class, 'update']);
+$app->router->delete('/api/usuarios/{id}', [\App\Controllers\UserController::class, 'destroy']);
+$app->router->get('/api/roles', [\App\Controllers\RoleController::class, 'index']);
+$app->router->post('/api/roles', [\App\Controllers\RoleController::class, 'store']);
+$app->router->put('/api/roles/{id}', [\App\Controllers\RoleController::class, 'update']);
+$app->router->delete('/api/roles/{id}', [\App\Controllers\RoleController::class, 'destroy']);
+$app->router->get('/api/sedes', [\App\Controllers\SedeController::class, 'index']);
+$app->router->post('/api/sedes', [\App\Controllers\SedeController::class, 'store']);
+$app->router->put('/api/sedes/{id}', [\App\Controllers\SedeController::class, 'update']);
+$app->router->delete('/api/sedes/{id}', [\App\Controllers\SedeController::class, 'destroy']);
 $app->router->get('/api/tiendas', [\App\Controllers\TenantController::class, 'index']);
 $app->router->get('/api/tiendas/{id}', [\App\Controllers\TenantController::class, 'show']);
 $app->router->post('/api/tiendas', [\App\Controllers\TenantController::class, 'store']);
@@ -75,6 +91,7 @@ $app->router->delete('/api/categorias/{id}', [\App\Controllers\CategoriaControll
 // Cajas
 $app->router->get('/api/cajas', [\App\Controllers\CajaController::class, 'index']);
 $app->router->post('/api/cajas', [\App\Controllers\CajaController::class, 'storeCaja']);
+$app->router->put('/api/cajas/{id}', [\App\Controllers\CajaController::class, 'updateCaja']);
 $app->router->delete('/api/cajas/{id}', [\App\Controllers\CajaController::class, 'destroyCaja']);
 $app->router->get('/api/sesiones-caja', [\App\Controllers\CajaController::class, 'sesiones']);
 $app->router->get('/api/sesiones-caja/activa', [\App\Controllers\CajaController::class, 'sesionActiva']);

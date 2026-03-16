@@ -45,6 +45,26 @@ class WebController {
     }
 
     public function cajas() {
-        $this->render('cajas');
+        $this->render('caja_menu');
+    }
+
+    public function cajaOperacion() {
+        $this->render('caja_operacion');
+    }
+
+    public function cajaGestion() {
+        $this->render('caja_gestion');
+    }
+
+    public function cajaConceptos() {
+        $this->render('caja_conceptos');
+    }
+
+    public function roles() {
+        $this->render('roles');
+    }
+
+    public function sedes() {
+        $this->render('sedes');
     }
 }
