@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #2b3990; /* Blue based on provided design */
+    --secondary-color: #1a255b;
+    --accent-color: #00b074; /* Green accents */
+    --bg-light: #f8f9fc;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    color: #2c3e50;
+}
+
+/* Auth Card Glassmorphism */
+.glass-card {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+}
+
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(43,57,144,1) 0%, rgba(26,37,91,1) 100%);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(43, 57, 144, 0.3);
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 12px 15px;
+    border: 1px solid #e1e5eb;
+    background-color: #fbfbfb;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.1rem rgba(43, 57, 144, 0.1);
+    background-color: #fff;
+}
+
+/* Dashboard Cards (Inspired by the prototype images) */
+.module-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid rgba(0,0,0,0.03);
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    height: 100%;
+}
+
+.module-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    border-color: rgba(43, 57, 144, 0.1);
+}
+
+.module-icon-wrapper {
+    width: 65px;
+    height: 65px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px auto;
+    font-size: 26px;
+}
+
+.bg-light-green {
+    background-color: rgba(0, 176, 116, 0.1);
+    color: var(--accent-color);
+}
+
+.bg-light-blue {
+    background-color: rgba(43, 57, 144, 0.08);
+    color: var(--primary-color);
+}
+
+.module-title {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    font-size: 1.15rem;
+}
+
+.module-desc {
+    font-size: 0.85rem;
+    color: #6c757d;
+    line-height: 1.4;
+}
+
+.top-navbar {
+    background: white;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+/* ── Breadcrumb de navegación entre módulos ── */
+.breadcrumb-nav {
+    background: white;
+    border-bottom: 1px solid #f0f2f5;
+    padding: 7px 40px;
+    margin-bottom: 28px;
+}
+
+.breadcrumb-nav .breadcrumb {
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+
+.breadcrumb-nav .breadcrumb-item a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.breadcrumb-nav .breadcrumb-item a:hover {
+    opacity: 0.75;
+}
+
+.breadcrumb-nav .breadcrumb-item.active {
+    color: #6c757d;
+}
+
+.breadcrumb-nav .breadcrumb-item + .breadcrumb-item::before {
+    color: #c0c7d0;
+}
+

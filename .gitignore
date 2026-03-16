@@ -1,0 +1,29 @@
+# Exclusiones de Git para POS Multi-tenant
+
+# Dependencias
+/vendor/
+/node_modules/
+
+# Archivos de Sistema / IDE
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+.DS_Store
+Thumbs.db
+
+# Logs y Cache
+/storage/logs/
+/storage/cache/
+*.log
+
+# Archivos de configuración sensible
+.env
+config/config_local.php
+
+# Temporales de carga
+/public/uploads/logos/*
+!/public/uploads/logos/.gitkeep
