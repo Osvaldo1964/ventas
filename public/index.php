@@ -46,12 +46,14 @@ $app->router->get('/', [\App\Controllers\WebController::class, 'login']);
 $app->router->get('/login', [\App\Controllers\WebController::class, 'login']);
 $app->router->get('/dashboard', [\App\Controllers\WebController::class, 'dashboard']);
 $app->router->get('/configuracion', [\App\Controllers\WebController::class, 'configuracion']);
+$app->router->get('/configuracion/terceros', [\App\Controllers\WebController::class, 'terceros']);
 $app->router->get('/configuracion/usuarios', [\App\Controllers\WebController::class, 'usuarios']);
 $app->router->get('/configuracion/tiendas', [\App\Controllers\WebController::class, 'tiendas']);
 $app->router->get('/configuracion/roles', [\App\Controllers\WebController::class, 'roles']);
 $app->router->get('/inventario', [\App\Controllers\WebController::class, 'inventario']);
 $app->router->get('/inventario/productos', [\App\Controllers\WebController::class, 'productos']);
 $app->router->get('/inventario/categorias', [\App\Controllers\WebController::class, 'categorias']);
+$app->router->get('/inventario/bodegas', [\App\Controllers\WebController::class, 'bodegas']);
 $app->router->get('/configuracion/sedes', [\App\Controllers\WebController::class, 'sedes']);
 $app->router->get('/cajas', [\App\Controllers\WebController::class, 'cajas']);
 $app->router->get('/cajas/operacion', [\App\Controllers\WebController::class, 'cajaOperacion']);
@@ -68,6 +70,10 @@ $app->router->get('/api/roles', [\App\Controllers\RoleController::class, 'index'
 $app->router->post('/api/roles', [\App\Controllers\RoleController::class, 'store']);
 $app->router->put('/api/roles/{id}', [\App\Controllers\RoleController::class, 'update']);
 $app->router->delete('/api/roles/{id}', [\App\Controllers\RoleController::class, 'destroy']);
+$app->router->get('/api/terceros', [\App\Controllers\TerceroController::class, 'index']);
+$app->router->post('/api/terceros', [\App\Controllers\TerceroController::class, 'store']);
+$app->router->put('/api/terceros/{id}', [\App\Controllers\TerceroController::class, 'update']);
+$app->router->delete('/api/terceros/{id}', [\App\Controllers\TerceroController::class, 'destroy']);
 $app->router->get('/api/sedes', [\App\Controllers\SedeController::class, 'index']);
 $app->router->post('/api/sedes', [\App\Controllers\SedeController::class, 'store']);
 $app->router->put('/api/sedes/{id}', [\App\Controllers\SedeController::class, 'update']);
@@ -89,6 +95,10 @@ $app->router->post('/api/categorias', [\App\Controllers\CategoriaController::cla
 $app->router->post('/api/categorias/{id}', [\App\Controllers\CategoriaController::class, 'update']);
 $app->router->put('/api/categorias/{id}', [\App\Controllers\CategoriaController::class, 'update']);
 $app->router->delete('/api/categorias/{id}', [\App\Controllers\CategoriaController::class, 'destroy']);
+$app->router->get('/api/bodegas', [\App\Controllers\BodegaController::class, 'index']);
+$app->router->post('/api/bodegas', [\App\Controllers\BodegaController::class, 'store']);
+$app->router->put('/api/bodegas/{id}', [\App\Controllers\BodegaController::class, 'update']);
+$app->router->delete('/api/bodegas/{id}', [\App\Controllers\BodegaController::class, 'destroy']);
 
 // Cajas
 $app->router->get('/api/cajas', [\App\Controllers\CajaController::class, 'index']);

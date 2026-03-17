@@ -56,7 +56,7 @@
 
             <!-- Bodegas -->
             <div class="col-md-4 col-sm-6">
-                <div class="module-card">
+                <div class="module-card" onclick="window.location.href='/ventas/public/inventario/bodegas'">
                     <div class="module-icon-wrapper bg-light-green"><i class="fas fa-warehouse"></i></div>
                     <div class="module-title">Bodegas</div>
                     <div class="module-desc">Ubicaciones físicas de almacenamiento.</div>

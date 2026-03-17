@@ -24,6 +24,10 @@ class WebController {
         $this->render('configuracion');
     }
 
+    public function terceros() {
+        $this->render('terceros');
+    }
+
     public function usuarios() {
         $this->render('usuarios');
     }
@@ -42,6 +46,10 @@ class WebController {
 
     public function categorias() {
         $this->render('categorias');
+    }
+
+    public function bodegas() {
+        $this->render('bodegas');
     }
 
     public function cajas() {
