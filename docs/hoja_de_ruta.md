@@ -43,14 +43,14 @@ Plataforma integral que combina un Sistema de Punto de Venta (POS) administrativ
 *   **1. Configuración:**
     *   [x] Datos de la tienda (Empresa, logos, tickets, slogan).
     *   [x] Sedes/Sucursales (Auto-creadas al crear tienda).
-    *   [ ] Terceros (Clientes y Proveedores).
+    *   [x] Terceros (Clientes y Proveedores).
     *   [x] Roles y Permisos (RBAC con matriz de permisos JSON).
     *   [x] Usuarios del sistema (CRUD completo: crear, editar, eliminar).
 
 *   **2. Inventarios:**
     *   [x] Categorías de productos (CRUD con imágenes y previsualización).
     *   [x] Items (Productos: precios, SKU, imagen principal, modal XL mejorado).
-    *   [ ] Bodegas.
+    *   [x] Bodegas.
     *   [ ] Entradas y Salidas de inventario.
     *   [ ] Traslados entre bodegas.
     *   *Nota: El inventario cuenta con optimización de carga y esquema de BD validado.*
@@ -81,6 +81,5 @@ Plataforma integral que combina un Sistema de Punto de Venta (POS) administrativ
 *   [x] Desarrollo del Backend (API REST Core).
 *   [x] Desarrollo del Frontend Web (Dashboard, Config, Inventarios, Cajas, Sedes).
 *   [x] Estandarización de Interfaz (Breadcrumbs, Barra de navegación, Notificaciones).
-*   [ ] Implementar el Módulo de Ventas POS (Punto de Venta).
 *   [ ] Implementar el Módulo de Ventas POS (Punto de Venta).
 *   [ ] Desarrollo del E-commerce frontend.
